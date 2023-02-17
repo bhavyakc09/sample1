@@ -30,7 +30,7 @@ jobs:
       - name: Read input from Excel file
         run: |
           pip install pandas
-          python read_input.py
+          python main.py
         env:
           INPUT_FILE: input_data.xlsx
 
