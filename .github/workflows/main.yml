@@ -17,20 +17,35 @@ jobs:
   greet:
     runs-on: ubuntu-latest
     steps:
-    - name: Send greeting
-      run: |
-      
-  build:        
-    runs-on: ubuntu-latest
-    steps:
-      # Checkout the pull request branch
-      - uses: actions/checkout@v3
-
-      - name: My Step
+      - name: Send greeting
         run: |
           # Perform some operation
-            output_value=42
-            echo "MY_OUTPUT=$output_value" >> $GITHUB_ENV
+          echo "Hello, ${{ github.event.inputs.name }}!"
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Read input from Excel file
+        run: |
+          pip install pandas
+          python read_input.py
         env:
-            MY_OUTPUT: ${{ steps.my-step.outputs.output_value }}
+          INPUT_FILE: input_data.xlsx
+
+      - name: Process input data
+        run: |
+          pip install pandas
+          python process_input.py
+        env:
+          INPUT_FILE: input_data.xlsx
+          OUTPUT_FILE: output_data.xlsx
+
+      - name: Set output environment variable
+        env:
+          MY_OUTPUT: ${{ steps.process-input.outputs.output_value }}
+        run: echo "MY_OUTPUT=${{ env.MY_OUTPUT }}" >> $GITHUB_ENV
+
+
 
