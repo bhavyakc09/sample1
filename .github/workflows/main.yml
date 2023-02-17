@@ -25,13 +25,12 @@ jobs:
     steps:
       # Checkout the pull request branch
       - uses: actions/checkout@v3
-      
+
       - name: My Step
         run: |
           # Perform some operation
-          output_value=42
-          echo "::set-env name=MY_OUTPUT::$output_value"
+            output_value=42
+            echo "MY_OUTPUT=$output_value" >> $GITHUB_ENV
         env:
-          MY_OUTPUT: ${{ steps.my-step.outputs.output_value }}
-
+            MY_OUTPUT: ${{ steps.my-step.outputs.output_value }}
 
