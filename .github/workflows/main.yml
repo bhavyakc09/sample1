@@ -1,23 +1,28 @@
-name: Read Excel Input
+name: Mixed inputs with Build
 
 on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: Who to greet
+        required: true
   push:
     branches:
-      - main
+      - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
-  read_excel:
+  greet:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Setup Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.x' # Replace with the desired Python version
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pandas openpyxl
-      - name: Run Python script
-        run: python sample.py
+    - name: Send greeting
+      run: |
+      
+  build:        
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the pull request branch
+      - uses: actions/checkout@v3
+
