@@ -1,3 +1,8 @@
+import os
+
+print(os.getcwd())
+
+
 import pandas as pd
 
 # Read the Excel file into a pandas DataFrame
