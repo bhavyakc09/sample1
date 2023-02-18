@@ -1,7 +1,8 @@
 import pandas as pd
 
-# Read input data from Excel file
-df = pd.read_excel('input_data.xlsx')
+# Read input data from Excel file on GitHub
+url = 'https://raw.githubusercontent.com/bhavyakc09/sample1/main/input_data.xlsx'
+df = pd.read_excel(url)
 
 # Process input data
 output_data = []
@@ -16,6 +17,7 @@ for index, row in df.iterrows():
     # Append output value to output data list
     output_data.append(output_value)
 
-# Write output data to Excel file
+# Write output data to Excel file on GitHub
 output_df = pd.DataFrame(output_data, columns=['Output Column'])
-output_df.to_excel('output_data.xlsx', index=False)
+output_url = 'https://raw.githubusercontent.com/bhavyakc09/sample1/main/output_data.xlsx'
+output_df.to_excel(output_url, index=False)
