@@ -50,6 +50,9 @@ jobs:
       - name: Install pandas
         run: pip install pandas
 
+      - name: Install openpyxl
+        run: pip install openpyxl
+
       - name: Check current directory
         run: |
           pwd
