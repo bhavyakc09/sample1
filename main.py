@@ -1,5 +1,4 @@
 import pandas as pd
-
 import openpyxl
 
 # Read input data from Excel file on GitHub
