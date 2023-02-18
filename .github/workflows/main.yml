@@ -63,3 +63,24 @@ jobs:
         
       - name: Install dependencies
         run: pip install pandas openpyxl
+        
+      - name: Install dependencies
+        run: pip install pandas openpyxl
+
+      - name: Read input from Excel file
+        run: python main.py
+        env:
+          INPUT_FILE: input_data.xlsx
+
+      - name: Process input data
+        run: python main.py
+        env:
+          INPUT_FILE: input_data.xlsx
+          OUTPUT_FILE: output_data.xlsx
+
+      - name: Write output to Excel file
+        run: python main.py
+        env:
+          INPUT_FILE: input_data.xlsx
+          OUTPUT_FILE: output_data.xlsx
+
