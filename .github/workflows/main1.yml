@@ -1,0 +1,24 @@
+name: Process Input Data
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  process-data:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Read input from Excel file and process data
+      run: |
+        pip install pandas openpyxl
+        python main.py input_data.xlsx output_data.xlsx
+
+    - name: Upload output file as an artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: output_data
+        path: output_data.xlsx
