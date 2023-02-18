@@ -6,10 +6,10 @@ on:
       name:
         description: Who to greet
         required: true
-  push:
+  pull_request_target:
     branches:
       - master
-  pull_request:
+  push:
     branches:
       - master
 
@@ -60,8 +60,3 @@ jobs:
         
       - name: Install dependencies
         run: pip install pandas openpyxl
-
-
-
-
-
