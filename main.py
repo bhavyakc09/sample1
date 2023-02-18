@@ -1,5 +1,7 @@
 import pandas as pd
 
+import openpyxl
+
 # Read input data from Excel file on GitHub
 url = 'https://raw.githubusercontent.com/bhavyakc09/sample1/main/input_data.xlsx'
 df = pd.read_excel(url)
