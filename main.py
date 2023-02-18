@@ -1,3 +1,7 @@
+import os
+
+print(os.getcwd())
+
 import pandas as pd
 
 # Read input data from Excel file
@@ -19,3 +23,7 @@ for index, row in df.iterrows():
 # Write output data to Excel file
 output_df = pd.DataFrame(output_data, columns=['Output Column'])
 output_df.to_excel('output_data.xlsx', index=False)
+
+import os
+
+print(os.listdir())
