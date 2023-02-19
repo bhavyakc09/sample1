@@ -63,3 +63,7 @@ jobs:
         run: |
           source myenv/bin/activate
           python main.py --input_file $INPUT_FILE --output_file $OUTPUT_FILE
+          
+      - name: Install openpyxl
+        run: pip install openpyxl
+
