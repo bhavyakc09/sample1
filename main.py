@@ -1,14 +1,12 @@
-import sys
 import pandas as pd
 
-# Read command line argument for input column name
-input_column = sys.argv[1]
+# Load the Excel file
+data_frame = pd.read_excel('input_data.xlsx')
 
-# Read input Excel file
-df = pd.read_excel('input.xlsx')
+# Prompt the user to enter the column name
+input_column = input("Enter the name of the column you want to use as input: ")
 
-# Perform some operation on input column
-for index, row in df.iterrows():
+# Iterate over the rows and print the value in the input column
+for index, row in data_frame.iterrows():
     input_value = row[input_column]
-    # perform some operation on input value
-    print(input_value)
+    print(f"Row {index + 1} - {input_column}: {input_value}")
