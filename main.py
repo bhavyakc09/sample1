@@ -1,5 +1,8 @@
 import pandas as pd
 
+import sys
+print(sys.executable)
+
 # Load the Excel file
 data_frame = pd.read_excel('input_data.xlsx')
 
