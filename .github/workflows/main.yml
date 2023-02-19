@@ -97,5 +97,8 @@ jobs:
         run: |
           source myenv/bin/activate
           python main.py
+          
+      - name: Run Script
+        run: C:/Users/BHAVYA K C/venv/Scripts/activate.bat
 
 
