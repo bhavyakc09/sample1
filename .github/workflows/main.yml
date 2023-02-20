@@ -33,11 +33,11 @@ jobs:
           
       - name: Create Python environment
         run: |
-          python3 -m venv
+          python3 -m venv myenv
           
       - name: Activate Python environment
         run: |
-          source venv/bin/activate
+          source myenv/bin/activate
           
       - name: Install dependencies
         run: |
@@ -45,19 +45,16 @@ jobs:
           
       - name: Read input from Excel file
         run: |
-          source venv/bin/activate
+          source myenv/bin/activate
           python main.py --input_file ./input_data.xlsx
-
       - name: Process input data
         run: |
-          source venv/bin/activate
+          source myenv/bin/activate
           python main.py --input_file ./input_data.xlsx
-
       - name: Write output to Excel file
         run: |
-          source venv/bin/activate
+          source myenv/bin/activate
           python main.py --output_file ./output_data.xlsx
-
       - name: Set output environment variable
         env:
           MY_OUTPUT: ${{ steps.write-output.outputs.output_value }}
@@ -74,16 +71,16 @@ jobs:
       
       - name: Install dependencies
         run: |
-          python -m venv
-          source venv/bin/activate
+          python -m venv myenv
+          source myenv/bin/activate
           pip install -r requirements.txt
           pip install openpyxl
       - name: Install dependencies in virtual environment
         run: |
-          source venv/bin/activate
+          source myenv/bin/activate
           pip install -r requirements.txt
  
       - name: Run script
         run: |
-          source venv/bin/activate
+          source myenv/bin/activate
           python main.py --input_file ./input_data.xlsx --output_file ./output_data.xlsx
