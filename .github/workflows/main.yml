@@ -72,14 +72,6 @@ jobs:
         env:
           MY_OUTPUT: ${{ steps.write-output.outputs.output_value }}
         run: echo "MY_OUTPUT=${{ env.MY_OUTPUT }}" >> $GITHUB_ENV
-        
-      - name: Set output variable
-        run: echo "MY_OUTPUT_VAR=hello" > ${{ github.workspace }}/env_file
-      - uses: actions/checkout@v2
-      - name: Use output variable
-        run: echo $MY_OUTPUT_VAR
-        env:
-          MY_OUTPUT_VAR: ${{ fromFile: github.workspace }}/env_file
 
       - name: Print message
         run: echo "Hello, this is a test message"
