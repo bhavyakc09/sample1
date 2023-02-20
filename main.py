@@ -1,18 +1,17 @@
 import argparse
 import pandas as pd
 
-import main
-
-input_file = 'D:/MY_PROJECT/sample1-main/input_file.xlsx'
-main.main(input_file)
-
-
 # Define the command line arguments
 parser = argparse.ArgumentParser(description='Process input file')
 parser.add_argument('--input_file', type=str, help='path to input file')
 
 # Parse the command line arguments
 args = parser.parse_args()
+
+# Check if input file argument was provided
+if not args.input_file:
+    print('Error: input file argument is missing.')
+    exit(1)
 
 # Load the Excel file
 data_frame = pd.read_excel(args.input_file)
@@ -21,6 +20,3 @@ data_frame = pd.read_excel(args.input_file)
 for index, row in data_frame.iterrows():
     for col_name, col_value in row.iteritems():
         print(f"Row {index + 1} - {col_name}: {col_value}")
-
-
-
