@@ -42,13 +42,13 @@ jobs:
           ls
 
       - name: Read input from Excel file
-        run: python main.py --input_file $INPUT_FILE
+        run: python main.py --input_file input_data.xlsx
 
       - name: Process input data
-        run: python main.py --input_file $INPUT_FILE --output_file $OUTPUT_FILE
+        run: python main.py --input_file input_data.xlsx --output_file output_data.xlsx
 
       - name: Write output to Excel file
-        run: python main.py --input_file $INPUT_FILE --output_file $OUTPUT_FILE
+        run: python main.py ---input_file input_data.xlsx --output_file output_data.xlsx
 
       - name: Set output environment variable
         env:
@@ -67,7 +67,7 @@ jobs:
       - name: Run Python script
         run: |
           source myenv/bin/activate
-          python main.py --input_file $INPUT_FILE --output_file $OUTPUT_FILE
+          python main.py --input_file input_data.xlsx --output_file output_data.xlsx
           
       - name: Install openpyxl
         run: pip install openpyxl
