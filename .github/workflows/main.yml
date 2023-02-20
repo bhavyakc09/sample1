@@ -31,13 +31,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas openpyxl
           
-      - name: Create Python environment
+      - name: Set up Python Environment
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11.2
+      - name: Install dependencies
         run: |
-          python3 -m venv myenv
-          
-      - name: Activate Python environment
-        run: |
+          python -m venv myenv
           source myenv/bin/activate
+          pip install -r requirements.txt
           
       - name: Install dependencies
         run: |
@@ -63,18 +65,13 @@ jobs:
       - name: Install openpyxl
         run: pip install openpyxl
         
-      - name: Install openpyxl
-        run: pip install openpyxl
-      
-      - name: Activate virtual environment
-        run: source venv/bin/activate
-      
       - name: Install dependencies
         run: |
-          python -m venv myenv
-          source myenv/bin/activate
-          pip install -r requirements.txt
-          pip install openpyxl
+          pip install pandas openpyxl  
+        
+      - name: Activate virtual environment
+        run: source venv/bin/activate
+        
       - name: Install dependencies in virtual environment
         run: |
           source myenv/bin/activate
