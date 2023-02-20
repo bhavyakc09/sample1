@@ -76,7 +76,8 @@ jobs:
         run: |
           source myenv/bin/activate
           pip install -r requirements.txt
- 
+          echo "input value" | python main.py --input_file ./input_data.xlsx
+
       - name: Run script
         run: |
           source myenv/bin/activate
