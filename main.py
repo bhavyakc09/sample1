@@ -4,7 +4,6 @@ import pandas as pd
 # Define the command line arguments
 parser = argparse.ArgumentParser(description='Process input file')
 parser.add_argument('--input_file', type=str, help='path to input file')
-parser.add_argument('--output_file', type=str, help='path to input file')
 
 # Parse the command line arguments
 args = parser.parse_args()
