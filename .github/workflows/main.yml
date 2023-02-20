@@ -24,10 +24,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up Python Environment
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: 3.11.2
           
@@ -46,6 +46,11 @@ jobs:
       
       - name: Run tests
         run: pytest
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: Test results
+          path: junit.xml
           
       - name: Read input from Excel file
         run: python main.py --input_file ./input_data.xlsx
