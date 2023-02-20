@@ -1,7 +1,7 @@
 import openpyxl
 
 # open the Excel file
-wb = openpyxl.load_workbook('path/to/excel/file.xlsx')
+wb = openpyxl.load_workbook('D:/MY_PROJECT/sample1-main/input_data.xlsx')
 
 # select the active sheet
 ws = wb.active
