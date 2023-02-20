@@ -76,5 +76,4 @@ jobs:
         run: python main.py --input_file input_data.xlsx --output_file output_data.xlsx
         env:
           INPUT_FILE: input_data.xlsx
-          OUTPUT_FILE: output_data.xlsx
 
