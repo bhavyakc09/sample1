@@ -1,6 +1,12 @@
 import argparse
 import pandas as pd
 
+import main
+
+input_file = 'D:/MY_PROJECT/sample1-main/input_file.xlsx'
+main.main(input_file)
+
+
 # Define the command line arguments
 parser = argparse.ArgumentParser(description='Process input file')
 parser.add_argument('--input_file', type=str, help='path to input file')
