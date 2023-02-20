@@ -24,30 +24,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pandas openpyxl
-          
+      - uses: actions/checkout@v2
+
       - name: Set up Python Environment
         uses: actions/setup-python@v2
         with:
           python-version: 3.11.2
+          
       - name: Install dependencies
         run: |
-          python -m venv myenv
-          source myenv/bin/activate
+          python -m pip install --upgrade pip
+          pip install pandas openpyxl
           pip install -r requirements.txt
           
-      - name: Create virtual environment
-        run: python -m venv myenv
-      - name: Activate virtual environment
-        run: source myenv/bin/activate
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-        
       - name: Check if pytest is installed
         run: |
           if ! command -v pytest &> /dev/null
@@ -55,52 +44,19 @@ jobs:
             pip install pytest
           fi
       
-      - name: Install dependencies
-        run: pip install pytest
       - name: Run tests
         run: pytest
           
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-          
       - name: Read input from Excel file
-        run: |
-          source myenv/bin/activate
-          python main.py --input_file ./input_data.xlsx
+        run: python main.py --input_file ./input_data.xlsx
       - name: Process input data
-        run: |
-          source myenv/bin/activate
-          python main.py --input_file ./input_data.xlsx
+        run: python main.py --input_file ./input_data.xlsx
       - name: Write output to Excel file
-        run: |
-          source myenv/bin/activate
-          python main.py --output_file ./output_data.xlsx
+        run: python main.py --output_file ./output_data.xlsx
       - name: Set output environment variable
         env:
           MY_OUTPUT: ${{ steps.write-output.outputs.output_value }}
         run: echo "MY_OUTPUT=${{ env.MY_OUTPUT }}" >> $GITHUB_ENV
-
-      - name: Install openpyxl
-        run: pip install openpyxl
         
-      - name: Install dependencies
-        run: |
-          pip install pandas openpyxl  
-        
-      - name: Activate virtual environment
-        run: source venv/bin/activate
-
-      - name: Install dependencies in virtual environment
-        run: |
-          source myenv/bin/activate
-          pip install -r requirements.txt
-    
       - name: Print message
         run: echo "Hello, this is a test message"
-  
-      - name: Run script
-        run: |
-          source myenv/bin/activate
-          python main.py --input_file ./input_data.xlsx --output_file ./output_data.xlsx
-
