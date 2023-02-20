@@ -18,28 +18,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send greeting
-        run: |
-          # Perform some operation
-          echo "Hello, ${{ inputs.name }}!"
+        run: echo "Hello, ${{ inputs.name }}!"
 
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install pandas openpyxl
-
-      - name: Install dependencies
-        run: |
-          pip install pandas openpyxl
-
-      - name: Check current directory
-        run: |
-          pwd
-          ls
 
       - name: Read input from Excel file
         run: python main.py --input_file input_data.xlsx
@@ -50,30 +39,15 @@ jobs:
       - name: Write output to Excel file
         run: python main.py --output_file output_data.xlsx
 
-      - name: Set output environment variable
-        env:
-          MY_OUTPUT: ${{ steps.write-output.outputs.output_value }}
-        run: echo "MY_OUTPUT=${{ env.MY_OUTPUT }}" >> $GITHUB_ENV
-
-      - name: Set up Python environment
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.11.2
-      - name: Install dependencies
-        run: |
-          python -m venv myenv
-          source myenv/bin/activate
-          pip install -r requirements.txt
-      - name: Run Python script
-        run: |
-          source myenv/bin/activate
-          python main.py --input_file input_data.xlsx --output_file output_data.xlsx
-          
       - name: Install openpyxl
         run: pip install openpyxl
-      
-      - name: Run script
-        run: python main.py --input_file input_data.xlsx --output_file output_data.xlsx
+
+      - name: Set up Python environment
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.11.2
+
+      - name: Run Python script
         env:
           INPUT_FILE: input_data.xlsx
-
+        run: python main.py --input_file ${{ env.INPUT_FILE }} --output_file output_data.xlsx
