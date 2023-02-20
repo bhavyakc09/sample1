@@ -71,4 +71,9 @@ jobs:
           
       - name: Install openpyxl
         run: pip install openpyxl
+      
+      - name: Run script
+        run: python main.py --input_file input_data.xlsx
+        env:
+          INPUT_FILE: input_data.xlsx
 
