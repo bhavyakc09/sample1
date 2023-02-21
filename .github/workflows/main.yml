@@ -45,7 +45,11 @@ jobs:
           fi
       
       - name: Run tests
-        run: pytest -s
+        env:
+          PYTEST_STDOUT_CAPTURE: no
+        run: |
+          pytest -s
+          
       - name: Upload test results
         uses: actions/upload-artifact@v3
         with:
