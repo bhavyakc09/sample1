@@ -45,7 +45,7 @@ jobs:
           fi
       
       - name: Run tests
-        run: pytest
+        run: pytest -s
       - name: Upload test results
         uses: actions/upload-artifact@v3
         with:
