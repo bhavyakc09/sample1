@@ -1,22 +1,33 @@
+import pandas as pd
 import openpyxl
+import argparse
 
-# define myfunc() function
-def myfunc(input_file_path=None):
-    if input_file_path:
-        # read input from Excel file
-        wb = openpyxl.load_workbook(input_file_path)
-        sheet = wb.active
-        # Prompt the user to enter the input value from the Excel file
-        user_input = input(f"Enter any input from the Excel file (or press Enter to use the default value): ")
-        if user_input:
-            input_value = sheet[user_input].value
-        else:
-            input_value = sheet['A1'].value if sheet['A1'].value is not None else 0
-    else:
-        # read input from user
-        input_value = input("Enter any input value: ")
+def read_input_data(input_file):
+    df = pd.read_excel(input_file)
+    return df
 
-    # Do some processing with the input value
-    result = input_value * 2
+def process_input_data(df):
+    df['output'] = df['input'] * 2
+    return df
 
-    return result
+def write_output_data(output_file, df):
+    writer = pd.ExcelWriter(output_file, engine='openpyxl')
+    writer.book = openpyxl.Workbook()
+    df.to_excel(writer, index=False)
+    writer.save()
+
+def process_excel(input_file, output_file):
+    df = read_input_data(input_file)
+    df = process_input_data(df)
+    write_output_data(output_file, df)
+    
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input_file', type=str, help='Path to input Excel file')
+    parser.add_argument('--output_file', type=str, help='Path to output Excel file')
+    args = parser.parse_args()
+    
+    input_file = args.input_file
+    output_file = args.output_file
+    
+    process_excel(input_file, output_file)
