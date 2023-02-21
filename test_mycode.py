@@ -9,17 +9,16 @@ result = myfunc('./input_data.xlsx', 'some input')
 print(result)
 
 def test_myfunc(tmp_path):
-    # create a temporary input file
     input_file = tmp_path / "test_input.xlsx"
+    # create a test Excel file
     wb = openpyxl.Workbook()
-    ws = wb.active
-    ws.cell(1, 1, "test value")
+    sheet = wb.active
+    sheet["A1"] = 1
+    sheet["A2"] = 2
+    sheet["A3"] = 3
     wb.save(input_file)
 
-    # test with valid input file and user input
-    assert myfunc(input_file, "test input") == "test value"
+    # test myfunc with the test input file
+    result = myfunc(input_file, 'some input')
+    assert result == expected_result
 
-def test_myfunc():
-    assert myfunc(2, 3) == 5
-    assert myfunc(0, 0) == 0
-    assert myfunc(-1, 1) == 0
