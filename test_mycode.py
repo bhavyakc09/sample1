@@ -5,6 +5,9 @@ import pytest
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+ def test_myfunc():
+    assert myfunc(2) == 4
+    
 def myfunc(tmp_path, monkeypatch):
     input_file = tmp_path / "input_data.xlsx"
     # create a test Excel file
@@ -23,3 +26,6 @@ def myfunc(tmp_path, monkeypatch):
     expected_result = 4
     result = myfunc(input_file)
     assert result == expected_result
+    
+   
+
