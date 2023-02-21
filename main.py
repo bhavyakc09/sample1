@@ -4,6 +4,7 @@ import openpyxl
 def myfunc(a, b):
     return a + b
 
+def myfunc(input_value):
     # open the Excel file
     wb = openpyxl.load_workbook('./input_data.xlsx')
 
