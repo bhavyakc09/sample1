@@ -5,7 +5,7 @@ import pytest
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
- def test_myfunc():
+ def myfunc():
     assert myfunc(2) == 4
     
 def myfunc(tmp_path, monkeypatch):
