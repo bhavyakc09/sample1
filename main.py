@@ -27,16 +27,3 @@ def myfunc(input_file_path, user_input):
             return row
     return None
 
-from mymodule import myfunc
-
-# define build() function
-def build():
-    # do something
-
-# define greet() function
-def greet():
-    # do something
-
-# call myfunc with input file path and user input
-result = myfunc('./input_data.xlsx', 'some input')
-print(result)
