@@ -4,9 +4,6 @@ import openpyxl
 import pytest
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
- def myfunc():
-    assert myfunc(2) == 4
     
 def myfunc(tmp_path, monkeypatch):
     input_file = tmp_path / "input_data.xlsx"
