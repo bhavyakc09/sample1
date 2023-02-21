@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
-          python-version: 3.9
+          python-version: 3.2.x
           
       - name: Install dependencies
         run: |
@@ -35,7 +35,7 @@ jobs:
         run: cat ./output_data.xlsx
       
       - name: Upload output as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: output
           path: ./output_data.xlsx
