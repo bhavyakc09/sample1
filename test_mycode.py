@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 from main import myfunc
 
 def test_myfunc(tmp_path):
-    input_file = tmp_path / "test_input.xlsx"
+    input_file = tmp_path / "input_data.xlsx"
     # create a test Excel file
     wb = openpyxl.Workbook()
     sheet = wb.active
