@@ -7,6 +7,7 @@ def read_input_data(input_file):
     return df
 
 def process_input_data(df):
+    print("Column names:", df.columns)
     df['output'] = df['input'] * 2
     return df
 
