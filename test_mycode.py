@@ -5,8 +5,6 @@ import pytest
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from main import myfunc
-
 def test_myfunc(tmp_path, monkeypatch):
     input_file = tmp_path / "input_data.xlsx"
     # create a test Excel file
