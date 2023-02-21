@@ -4,9 +4,13 @@ import openpyxl
 def myfunc(a, b):
     return a + b
 
-def read_input_from_excel():
+def myfunc(input_file_path, user_input):
     # open the Excel file
-    wb = openpyxl.load_workbook('./input_data.xlsx')
+    wb = openpyxl.load_workbook(input_file_path)
+    
+#def read_input_from_excel():
+    # open the Excel file
+    #wb = openpyxl.load_workbook('./input_data.xlsx')
 
     # select the active sheet
     ws = wb.active
@@ -23,3 +27,16 @@ def read_input_from_excel():
             return row
     return None
 
+from mymodule import myfunc
+
+# define build() function
+def build():
+    # do something
+
+# define greet() function
+def greet():
+    # do something
+
+# call myfunc with input file path and user input
+result = myfunc('./input_data.xlsx', 'some input')
+print(result)
