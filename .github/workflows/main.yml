@@ -1,81 +1,41 @@
-name: Mixed inputs with Build
+name: Excel Processing Workflow
 
 on:
-  workflow_dispatch:
-    inputs:
-      name:
-        description: Who to greet
-        required: true
-  pull_request_target:
-    branches:
-      - master
   push:
     branches:
-      - master
+      - main
 
 jobs:
-  greet:
+  process-excel:
     runs-on: ubuntu-latest
     steps:
-      - name: Send greeting
-        run: |
-          # Perform some operation
-          echo "Hello, ${{ inputs.name }}!"
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Python Environment
-        uses: actions/setup-python@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          python-version: 3.9.x
+          python-version: 3.9
           
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install pandas openpyxl
-          pip install -r requirements.txt
-          
-      - name: Check if pytest is installed
-        run: |
-          if ! command -v pytest &> /dev/null
-          then
-            pip install pytest
-          fi
-      
-      - name: Run tests
-        env:
-          PYTEST_STDOUT_CAPTURE: no
-        run: |
-          pytest -s
-          
-      - name: Upload test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: Test results
-          path: junit.xml
-      
-      - name: Run tests
-        run: |
-          pytest --junitxml=junit/test-results.xml
-
-      - name: Upload test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: Test Results
-          path: junit/test-results.xml
           
       - name: Read input from Excel file
         run: python main.py --input_file ./input_data.xlsx
+        
       - name: Process input data
-        run: python main.py --input_file ./input_data.xlsx
+        run: python main.py --input_file ./input_data.xlsx --output_file ./output_data.xlsx
+        
       - name: Write output to Excel file
         run: python main.py --output_file ./output_data.xlsx
-      - name: Set output environment variable
-        env:
-          MY_OUTPUT: ${{ steps.write-output.outputs.output_value }}
-        run: echo "MY_OUTPUT=${{ env.MY_OUTPUT }}" >> $GITHUB_ENV
-
-      - name: Print message
-        run: echo "Hello, this is a test message"
+      
+      - name: Print output
+        run: cat ./output_data.xlsx
+      
+      - name: Upload output as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: output
+          path: ./output_data.xlsx
