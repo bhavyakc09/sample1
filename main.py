@@ -11,7 +11,7 @@ def myfunc(input_file_path=None):
         if user_input:
             input_value = sheet[user_input].value
         else:
-            input_value = sheet['A1'].value  # Use default value if user didn't enter a value
+            input_value = sheet['A1'].value if sheet['A1'].value is not None else 0
     else:
         # read input from user
         input_value = input("Enter any input value: ")
