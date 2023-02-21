@@ -4,7 +4,7 @@ import openpyxl
 def myfunc(a, b):
     return a + b
 
-def myfunc(input_value):
+def read_input_from_excel():
     # open the Excel file
     wb = openpyxl.load_workbook('./input_data.xlsx')
 
@@ -22,3 +22,4 @@ def myfunc(input_value):
         if user_input in row:
             return row
     return None
+
