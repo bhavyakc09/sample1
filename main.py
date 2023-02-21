@@ -1,7 +1,9 @@
 import openpyxl
 
 # define myfunc() function
-def myfunc():
+def myfunc(a, b):
+    return a + b
+
     # open the Excel file
     wb = openpyxl.load_workbook('./input_data.xlsx')
 
